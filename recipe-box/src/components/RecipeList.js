@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 
-function recipeList({fetchRecipes, items, fetchRecipeError}) {
+function RecipeList({fetchRecipes, items, fetchRecipeError}) {
     useEffect(() => {
         fetchRecipes();
     }, []);
@@ -27,10 +27,10 @@ function recipeList({fetchRecipes, items, fetchRecipeError}) {
     );
 }
 
-recipeList.propTypes = {
+RecipeList.propTypes = {
     items: PropTypes.array,
     fetchRecipes: PropTypes.func,
-    fetchRecipeError: PropTypes.string,
+    fetchRecipesError: PropTypes.string,
 };
 
-export default recipeList;
+export default RecipeList;
