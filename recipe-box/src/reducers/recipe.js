@@ -1,8 +1,8 @@
 import update from 'immutability-helper';
 
 const initialState = {
-    recipes : [],
-    fetchRecipeError: ''
+    recipes: [],
+    fetchRecipeError: '',
 };
 
 function recipeReducer(state = initialState, action) {

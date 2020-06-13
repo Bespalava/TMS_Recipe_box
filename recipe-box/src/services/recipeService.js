@@ -1,3 +1,4 @@
+
 const BASE_URL = 'http://localhost:3001';
 
 class recipeService {
@@ -6,7 +7,6 @@ class recipeService {
 
         return await result.json();
     }
-
 }
 
 export default new recipeService();

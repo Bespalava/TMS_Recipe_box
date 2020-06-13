@@ -4,7 +4,7 @@ import RecipeList from "../components/RecipeList";
 
 const mapStateToProps = state => {
     return {
-        items: state.recipe.categories,
+        items: state.recipe.recipes,
         fetchRecipeError: state.recipe.fetchRecipeError,
     }
 };
