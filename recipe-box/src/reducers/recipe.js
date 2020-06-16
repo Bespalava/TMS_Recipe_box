@@ -1,5 +1,6 @@
 import update from 'immutability-helper';
 
+
 const initialState = {
     recipes: [],
     fetchRecipeError: '',
@@ -29,6 +30,20 @@ function recipeReducer(state = initialState, action) {
                     [`edit${action.payload.fieldName}`]: action.payload.value,
                 }
             });
+
+
+         case 'RECIPE/ADDED_NEW_RECIPE_SUCCESSFULLY':
+            // return update(state, {
+            //     recipes: {
+            //         $push: [action.payload.item]
+            //     }
+            return update(state, {
+                        $merge: {
+                            recipes: action.payload.item,
+                }
+             });
+
+
         default:
             return state
     }

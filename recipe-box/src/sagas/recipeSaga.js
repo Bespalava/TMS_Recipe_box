@@ -15,8 +15,8 @@ function* fetchRecipes() {
 //2 add result
 function* addRecipes() {
 
-
     try {
+
         let title = yield select(state => state.recipe.editTitle);
         let description = select(state => state.recipe.editDescription);
         console.log(title);
