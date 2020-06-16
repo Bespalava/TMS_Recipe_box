@@ -3,6 +3,9 @@ import update from 'immutability-helper';
 const initialState = {
     recipes: [],
     fetchRecipeError: '',
+
+    editTitle: '',
+    editDescription: '',
 };
 
 function recipeReducer(state = initialState, action) {
@@ -17,6 +20,13 @@ function recipeReducer(state = initialState, action) {
             return update(state, {
                 $merge: {
                     fetchRecipeError: action.payload.message,
+                }
+            });
+            //одни обработчик для формы добавления редактирования рецепта
+        case 'RECIPE/EDIT_FIELD':
+            return update(state, {
+                $merge: {
+                    [`edit${action.payload.fieldName}`]: action.payload.value,
                 }
             });
         default:

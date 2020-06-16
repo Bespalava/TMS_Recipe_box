@@ -7,6 +7,14 @@ class recipeService {
 
         return await result.json();
     }
+
+    async addItem(params) {
+        const result = await fetch(`${BASE_URL}/recipes`);
+
+        return await result.json();
+    }
 }
+
+
 
 export default new recipeService();
