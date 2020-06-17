@@ -10,6 +10,7 @@ import {
 import RecipeList from "./containers/RecipeList";
 import RecipeEdit from "./containers/RecipeEdit";
 import StartPage from "./components/StartPage";
+import RecipesRemove from "./containers/RecipesRemove";
 
 
 function App() {
@@ -30,6 +31,10 @@ function App() {
                             <NavLink className='nav-link' activeClassName='active' to="/recipes">Show All Recipes</NavLink>
                         </li>
                         <li className="nav-item">
+                            <NavLink className='nav-link' activeClassName='active' to="/delete-recipes">Delete All Recipes</NavLink>
+                        </li>
+
+                        <li className="nav-item">
                             <NavLink className='nav-link' activeClassName='active' to="/create-recipe">Add a New Recipe</NavLink>
                         </li>
                     </ul>
@@ -45,12 +50,16 @@ function App() {
             <Switch>
                 <Route path="/" exact>
 
-                 <StartPage />
+                    <StartPage />
 
                 </Route>
                 <Route path="/recipes">
                     <RecipeList />
                 </Route>
+                <Route path="/delete-recipes">
+                    <RecipesRemove />
+                </Route>
+
                 <Route path="/create-recipe">
                     <RecipeEdit />
                 </Route>

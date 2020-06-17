@@ -1,6 +1,5 @@
 import update from 'immutability-helper';
 
-
 const initialState = {
     recipes: [],
     fetchRecipeError: '',
@@ -19,11 +18,11 @@ function recipeReducer(state = initialState, action) {
             });
         case 'RECIPE/FETCH_RECIPES_ERROR':
             return update(state, {
-                $merge: {
+                $mergea: {
                     fetchRecipeError: action.payload.message,
                 }
             });
-            //одни обработчик для формы добавления редактирования рецепта
+        //одни обработчик для формы добавления редактирования рецепта
         case 'RECIPE/EDIT_FIELD':
             return update(state, {
                 $merge: {
@@ -31,17 +30,24 @@ function recipeReducer(state = initialState, action) {
                 }
             });
 
+        case 'RECIPE/RECIPES_REMOVE_ALL': //*****
+            return update(state, {
+                $set: {
+                    recipes:[],
+                }
+            });
 
-         case 'RECIPE/ADDED_NEW_RECIPE_SUCCESSFULLY':
+
+        case 'RECIPE/ADDED_NEW_RECIPE_SUCCESSFULLY':
             // return update(state, {
             //     recipes: {
             //         $push: [action.payload.item]
             //     }
             return update(state, {
-                        $merge: {
-                            recipes: action.payload.item,
+                $merge: {
+                    recipes: action.payload.item,
                 }
-             });
+            });
 
 
         default:

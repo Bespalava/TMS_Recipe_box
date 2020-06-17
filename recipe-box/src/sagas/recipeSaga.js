@@ -36,6 +36,19 @@ function* addRecipes() {
 }
 
 
+function* deleteAll() {
+
+    console.log("test delete");
+    try {
+        let items = yield call(recipeService.delRecipes);
+        yield put({type: 'RECIPE/FETCH_RECIPES_SUCCESSFULLY', payload: {items}});
+    } catch ({message}) {
+        // yield put({type: 'RECIPE/RECIPES_REMOVE_ALL_ERROR', payload: {message}});
+    }
+}
+
+
+
 function* fetchRecipesSaga() {
     yield takeLatest('RECIPE/FETCH_RECIPES', fetchRecipes);
 }
@@ -45,10 +58,15 @@ function* addRecipeSaga() {
     yield takeLatest('RECIPE/ADD_NEW_RECIPE', addRecipes);
 }
 
+function* deleteRecipesSaga() {
+    yield takeLatest("RECIPES/ALL_REMOVE", deleteAll);
+}
+
 export default function* recipeSaga() {
     yield all([
-      //fetchRecipes(),
+        //fetchRecipes(),
         fetchRecipesSaga(),
         addRecipeSaga(),
+        deleteRecipesSaga(),
     ]);
 };
