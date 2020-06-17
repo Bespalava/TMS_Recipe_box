@@ -9,10 +9,13 @@ import {
 
 import RecipeList from "./containers/RecipeList";
 import RecipeEdit from "./containers/RecipeEdit";
+import StartPage from "./components/StartPage";
+
 
 function App() {
     function renderNavigation() {
         return (
+
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <a className="navbar-brand" href="#">Brand</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,10 +27,10 @@ function App() {
                             <NavLink className='nav-link' activeClassName='active' to="/" exact>Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className='nav-link' activeClassName='active' to="/recipes">All Recipes</NavLink>
+                            <NavLink className='nav-link' activeClassName='active' to="/recipes">Show All Recipes</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className='nav-link' activeClassName='active' to="/create-recipe">Add Recipe</NavLink>
+                            <NavLink className='nav-link' activeClassName='active' to="/create-recipe">Add a New Recipe</NavLink>
                         </li>
                     </ul>
                 </div>
@@ -38,9 +41,12 @@ function App() {
     return (
         <div className="container">
             {renderNavigation()}
+
             <Switch>
                 <Route path="/" exact>
-                    <h4>This is Recipe box App</h4>
+
+                 <StartPage />
+
                 </Route>
                 <Route path="/recipes">
                     <RecipeList />
