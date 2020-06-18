@@ -1,4 +1,3 @@
-
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import {
@@ -25,17 +24,21 @@ function App() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <NavLink className='nav-link' activeClassName='active' to="/" exact>Home</NavLink>
+                            <NavLink className='nav-link' activeClassName='active' to="/"><button type="button" className="btn btn-outline-secondary">
+                                Home</button></NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className='nav-link' activeClassName='active' to="/recipes">Show All Recipes</NavLink>
+                            <NavLink className='nav-link' activeClassName='active' to="/recipes"><button type="button" className="btn btn-outline-info">
+                                Show All Recipes</button></NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className='nav-link' activeClassName='active' to="/delete-recipes">Delete All Recipes</NavLink>
+                            <NavLink className='nav-link' activeClassName='active' to="/delete-recipes"><button type="button" className="btn btn-outline-danger">
+                                Delete All Recipes</button></NavLink>
                         </li>
 
                         <li className="nav-item">
-                            <NavLink className='nav-link' activeClassName='active' to="/create-recipe">Add a New Recipe</NavLink>
+                            <NavLink className='nav-link' activeClassName='active' to="/create-recipe"><button type="button" className="btn btn-outline-success">
+                                Add a New Recipe</button></NavLink>
                         </li>
                     </ul>
                 </div>
