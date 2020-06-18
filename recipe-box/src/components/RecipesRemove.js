@@ -18,7 +18,7 @@ function RecipesRemove({ items, deleteAll }) {
                         color="secondary"
                         disableElevation
                 >
-                    Remove All Recipes
+                    Delete All Recipes
                 </Button>
             )}
         </div>
