@@ -6,10 +6,14 @@ const initialState = {
 
     editTitle: '',
     editDescription: '',
+
+    editSuccessfully: false,
+    createItemErrorMessage: '',
 };
 
 function recipeReducer(state = initialState, action) {
     switch (action.type) {
+        //Recipes list
         case 'RECIPE/FETCH_RECIPES_SUCCESSFULLY':
             return update(state, {
                 $merge: {
@@ -18,11 +22,12 @@ function recipeReducer(state = initialState, action) {
             });
         case 'RECIPE/FETCH_RECIPES_ERROR':
             return update(state, {
-                $mergea: {
+                $merge: {
                     fetchRecipeError: action.payload.message,
                 }
             });
-        //одни обработчик для формы добавления редактирования рецепта
+
+        //Edit every field
         case 'RECIPE/EDIT_FIELD':
             return update(state, {
                 $merge: {
@@ -30,25 +35,43 @@ function recipeReducer(state = initialState, action) {
                 }
             });
 
-        case 'RECIPE/RECIPES_REMOVE_ALL': //*****
+        //Recipe item subscribes
+        case 'RECIPE/ADDED_NEW_RECIPE_SUCCESSFULLY': //--new
+            return update(state, {
+                recipes: {
+                    $push: [
+                        action.payload.item,
+                    ]
+                },
+                $merge: {
+                    editSuccessfully: true,
+                    editTitle: initialState.editTitle,
+                    editDescription: initialState.editDescription,
+                }
+            });
+        case 'RECIPE/ADDED_NEW_RECIPE_ERROR':
+            return update(state, {
+                $merge: {
+                    createItemErrorMessage: action.payload.message,
+                }
+            });
+
+        //-
+        case 'RECIPE/RESET_EDIT':
+            return update(state, {
+                $merge: {
+                    editSuccessfully: initialState.editSuccessfully,
+                }
+            });
+
+
+        //Recipes delete Recipes list
+        case 'RECIPE/RECIPES_REMOVE_ALL': //*
             return update(state, {
                 $set: {
                     recipes:[],
                 }
             });
-
-
-        case 'RECIPE/ADDED_NEW_RECIPE_SUCCESSFULLY':
-            // return update(state, {
-            //     recipes: {
-            //         $push: [action.payload.item]
-            //     }
-            return update(state, {
-                $merge: {
-                    recipes: action.payload.item,
-                }
-            });
-
 
         default:
             return state

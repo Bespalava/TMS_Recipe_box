@@ -5,29 +5,24 @@ import recipeService from "./../services/recipeService";
 
 function* fetchRecipes() {
     try {
-        let items = yield call(recipeService.fetchRecipes);
+        let items = yield call(recipeService.getItems);
 
         yield put({type: 'RECIPE/FETCH_RECIPES_SUCCESSFULLY', payload: {items}});
     } catch ({message}) {
         yield put({type: 'RECIPE/FETCH_RECIPES_ERROR', payload: {message}});
     }
 }
-//2 add result
+
 function* addRecipes() {
 
     try {
-
         let title = yield select(state => state.recipe.editTitle);
-        let description = select(state => state.recipe.editDescription);
-        console.log(title);
-
-        //let title = select('title');
+        let description = yield select(state => state.recipe.editDescription);
 
         let item = yield call(recipeService.addItem, {
             title,
             description,
         });
-
 
         yield put({type: 'RECIPE/ADDED_NEW_RECIPE_SUCCESSFULLY', payload: {item}});
     } catch ({message}) {
@@ -64,7 +59,6 @@ function* deleteRecipesSaga() {
 
 export default function* recipeSaga() {
     yield all([
-        //fetchRecipes(),
         fetchRecipesSaga(),
         addRecipeSaga(),
         deleteRecipesSaga(),

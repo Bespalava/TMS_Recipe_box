@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
+import {Redirect} from 'react-router-dom';
 
 function RecipeEdit(
     {
@@ -8,8 +9,19 @@ function RecipeEdit(
 
         onSubmit,
         editField,
+
+        errorMessage,
+        editSuccessfully,
+        reset,
     }
+
 ) {
+    useEffect(() => {
+        if (errorMessage) {
+            alert('Something went wrong. Try again later...');
+        }
+    }, [errorMessage]);
+
     function submit(e) {
         e.preventDefault();
 
@@ -26,8 +38,16 @@ function RecipeEdit(
     }, {
         value: description,
         name: 'Description',
-    },
-    ];
+    }];
+
+    if (editSuccessfully) {
+        reset();
+
+        return (
+            <Redirect to='/recipes'/>
+        );
+    }
+
 
     return (
         <div>
@@ -47,7 +67,8 @@ function RecipeEdit(
                         </div>
                     ))
                 }
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary ">Submit Recipe</button>
+                <button type="cancel" className="btn btn-danger" >Cancel</button>
             </form>
         </div>
     );
@@ -58,6 +79,9 @@ RecipeEdit.propTypes = {
     description: PropTypes.string,
     editField: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
+    errorMessage: PropTypes.string,
+    editSuccessfully: PropTypes.bool,
+    reset: PropTypes.func,
 };
 
 export default RecipeEdit;

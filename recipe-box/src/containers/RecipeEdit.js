@@ -6,6 +6,9 @@ const mapStateToProps = state => {
     return {
         title: state.recipe.editTitle,
         description: state.recipe.editDescription,
+
+        errorMessage: state.recipe.createItemErrorMessage,
+        editSuccessfully: state.recipe.editSuccessfully,
     }
 };
 const mapDispatchToProps = (dispatch, state) => {
@@ -20,7 +23,12 @@ const mapDispatchToProps = (dispatch, state) => {
         onSubmit: () => dispatch({
             type: 'RECIPE/ADD_NEW_RECIPE',
         }),
+
+        reset: () => dispatch({
+            type: 'RECIPE/RESET_EDIT',
+        }),
     };
+
 };
 
 export default connect(
