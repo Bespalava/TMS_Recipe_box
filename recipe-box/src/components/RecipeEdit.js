@@ -18,9 +18,10 @@ function RecipeEdit(
 ) {
     useEffect(() => {
         if (errorMessage) {
-            alert('Something went wrong. Try again later...');
+            alert('There is no any recipes...');
         }
     }, [errorMessage]);
+
 
     function submit(e) {
         e.preventDefault();
@@ -50,6 +51,7 @@ function RecipeEdit(
 
 
     return (
+        //<input style="height:50px"/>
         <div>
             <form onSubmit={submit}>
                 {
@@ -67,7 +69,7 @@ function RecipeEdit(
                         </div>
                     ))
                 }
-                <button type="submit" className="btn btn-primary ">Submit Recipe</button>
+                <button type="submit" className="btn btn-success">Submit Recipe</button>
                 <button type="cancel" className="btn btn-danger" >Cancel</button>
             </form>
         </div>

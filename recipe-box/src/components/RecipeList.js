@@ -8,7 +8,7 @@ function RecipeList({items, fetchRecipes, fetchRecipeError}) {
 
     useEffect(() => {
         if (fetchRecipeError) {
-            alert(fetchRecipeError);
+            alert('There is no any recipe...');
         }
     }, [fetchRecipeError]);
 

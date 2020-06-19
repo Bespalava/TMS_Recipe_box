@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 
-import RecipeEdit from "../components/RecipeEdit";
+import RecipeEdit from '../components/RecipeEdit';
+import Actions from './../actions/recipe';
 
 const mapStateToProps = state => {
     return {
@@ -12,6 +13,7 @@ const mapStateToProps = state => {
     }
 };
 const mapDispatchToProps = (dispatch, state) => {
+
     return {
         editField: (fieldName, value) => dispatch({
             type: 'RECIPE/EDIT_FIELD',
@@ -20,13 +22,18 @@ const mapDispatchToProps = (dispatch, state) => {
                 value
             }
         }),
-        onSubmit: () => dispatch({
-            type: 'RECIPE/ADD_NEW_RECIPE',
-        }),
 
-        reset: () => dispatch({
-            type: 'RECIPE/RESET_EDIT',
-        }),
+        // onSubmit: () => dispatch({
+        //     type: 'RECIPE/ADD_NEW_RECIPE',
+        // }),
+        //
+        // reset: () => dispatch({
+        // type: 'RECIPE/RESET_EDIT',
+        // }),
+
+        onSubmit: () => dispatch(Actions['RECIPE/ADD_NEW_RECIPE']()),
+        reset: () => dispatch(Actions['RECIPE/RESET_EDIT']()),
+
     };
 
 };

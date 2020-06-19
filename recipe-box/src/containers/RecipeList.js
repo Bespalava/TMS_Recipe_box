@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 
-import RecipeList from "../components/RecipeList";
+import RecipeList from '../components/RecipeList';
+import Actions from './../actions/recipe';
 
 const mapStateToProps = state => {
     return {
@@ -10,9 +11,12 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        fetchRecipes: () => dispatch({
-            type: 'RECIPE/FETCH_RECIPES',
-        }),
+
+        fetchRecipes: () => dispatch(Actions['RECIPE/FETCH_RECIPES']()),
+
+        // fetchRecipes: () => dispatch({
+        //     type: 'RECIPE/FETCH_RECIPES',
+        // }),
     };
 };
 

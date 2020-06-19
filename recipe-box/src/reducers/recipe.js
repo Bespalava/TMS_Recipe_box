@@ -1,4 +1,6 @@
 import update from 'immutability-helper';
+import { handleActions } from 'redux-actions';
+import Actions from './../actions/recipe';
 
 const initialState = {
     recipes: [],
@@ -11,32 +13,45 @@ const initialState = {
     createItemErrorMessage: '',
 };
 
-function recipeReducer(state = initialState, action) {
-    switch (action.type) {
+const recipeReducer = handleActions(
+    {
         //Recipes list
-        case 'RECIPE/FETCH_RECIPES_SUCCESSFULLY':
+        [Actions['RECIPE/FETCH_RECIPES_SUCCESSFULLY']]: (state, action) => {
             return update(state, {
                 $merge: {
                     recipes: action.payload.items,
-                }
+                },
             });
-        case 'RECIPE/FETCH_RECIPES_ERROR':
+        },
+
+        [Actions['RECIPE/FETCH_RECIPES_ERROR']]: (state, action) => {
             return update(state, {
                 $merge: {
                     fetchRecipeError: action.payload.message,
-                }
+                },
             });
+        },
 
-        //Edit every field
-        case 'RECIPE/EDIT_FIELD':
+        //Recipes delete Recipes list
+        [Actions["RECIPE/DELETE_ALL_RECIPES"]]: (state, action) => {
+            return update(state, {
+                $set: {
+                    recipes: [],
+                },
+            });
+        },
+
+        //--
+        [Actions['RECIPE/DELETE_ALL_RECIPES_SUCCESSFULLY']]: (state, action) => {
             return update(state, {
                 $merge: {
-                    [`edit${action.payload.fieldName}`]: action.payload.value,
-                }
+                    recipes: action.payload.items,
+                },
             });
+        },
 
         //Recipe item subscribes
-        case 'RECIPE/ADDED_NEW_RECIPE_SUCCESSFULLY': //--new
+        [Actions['RECIPE/ADDED_NEW_RECIPE_SUCCESSFULLY']]: (state, action) => {
             return update(state, {
                 recipes: {
                     $push: [
@@ -49,33 +64,33 @@ function recipeReducer(state = initialState, action) {
                     editDescription: initialState.editDescription,
                 }
             });
-        case 'RECIPE/ADDED_NEW_RECIPE_ERROR':
+        },
+
+        [Actions['RECIPE/ADDED_NEW_RECIPE_ERROR']]: (state, action) => {
             return update(state, {
                 $merge: {
                     createItemErrorMessage: action.payload.message,
-                }
+                },
             });
+        },
 
-        //-
-        case 'RECIPE/RESET_EDIT':
+        [Actions['RECIPE/RESET_EDIT']]: (state, action) => {
             return update(state, {
                 $merge: {
                     editSuccessfully: initialState.editSuccessfully,
-                }
+                },
             });
+        },
 
-
-        //Recipes delete Recipes list
-        case 'RECIPE/RECIPES_REMOVE_ALL': //*
-            return update(state, {
-                $set: {
-                    recipes:[],
-                }
-            });
-
-        default:
-            return state
-    }
-}
+        // [Actions['RECIPE/EDIT_FIELD']]: (state, action) => {
+        //     return update(state, {
+        //         $merge: {
+        //             [`edit${action.payload.fieldName}`]: action.payload.value,
+        //         },
+        //     });
+        // },
+    },
+    initialState
+);
 
 export default recipeReducer;

@@ -1,18 +1,20 @@
 import {call, put, takeLatest, all, select} from 'redux-saga/effects';
-
-import recipeService from "./../services/recipeService";
+import Actions from './../actions/recipe';
+import recipeService from './../services/recipeService';
 
 
 function* fetchRecipes() {
     try {
         let items = yield call(recipeService.getItems);
-
-        yield put({type: 'RECIPE/FETCH_RECIPES_SUCCESSFULLY', payload: {items}});
+        yield put(Actions['RECIPE/FETCH_RECIPES_SUCCESSFULLY']({ items }));
+        //yield put({type: 'RECIPE/FETCH_RECIPES_SUCCESSFULLY', payload: {items}});
     } catch ({message}) {
-        yield put({type: 'RECIPE/FETCH_RECIPES_ERROR', payload: {message}});
+        yield put(Actions['RECIPE/FETCH_RECIPES_ERROR']({ message }));
+        //yield put({type: 'RECIPE/FETCH_RECIPES_ERROR', payload: {message}});
     }
 }
 
+//(action?)
 function* addRecipes() {
 
     try {
@@ -24,21 +26,23 @@ function* addRecipes() {
             description,
         });
 
-        yield put({type: 'RECIPE/ADDED_NEW_RECIPE_SUCCESSFULLY', payload: {item}});
+        yield put(Actions['RECIPE/ADDED_NEW_RECIPE_SUCCESSFULLY']({ item }));
+        //yield put({type: 'RECIPE/ADDED_NEW_RECIPE_SUCCESSFULLY', payload: {item}});
     } catch ({message}) {
-        yield put({type: 'RECIPE/ADDED_NEW_RECIPE_ERROR', payload: {message}});
+        yield put(Actions['RECIPE/ADDED_NEW_RECIPE_ERROR']({ message }));
+        //yield put({type: 'RECIPE/ADDED_NEW_RECIPE_ERROR', payload: {message}});
     }
 }
 
-
-function* deleteAll() {
-
-    console.log("test delete");
+function* deleteAll(action) {
     try {
-        let items = yield call(recipeService.delRecipes);
-        yield put({type: 'RECIPE/FETCH_RECIPES_SUCCESSFULLY', payload: {items}});
-    } catch ({message}) {
-        // yield put({type: 'RECIPE/RECIPES_REMOVE_ALL_ERROR', payload: {message}});
+
+        let items = yield call(recipeService.deleteItems);
+
+        yield put(Actions['RECIPE/DELETE_ALL_RECIPES_SUCCESSFULLY']({ items })
+        );
+    } catch ({ message }) {
+        yield put(Actions['RECIPE/DELETE_ALL_RECIPES_ERROR']({ message }));
     }
 }
 
@@ -54,7 +58,7 @@ function* addRecipeSaga() {
 }
 
 function* deleteRecipesSaga() {
-    yield takeLatest("RECIPES/ALL_REMOVE", deleteAll);
+    yield takeLatest("RECIPE/DELETE_ALL_RECIPES", deleteAll);
 }
 
 export default function* recipeSaga() {
