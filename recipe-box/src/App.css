@@ -65,13 +65,13 @@
   text-decoration:none;
 }
 .ButtonsStyle:hover {
-   /*background-color:#6c7c7c;*/
-   background-color:#dfdfdf;
- }
+  /*background-color:#6c7c7c;*/
+  background-color:#dfdfdf;
+}
 .ButtonsStyle:active {
-   position:relative;
-   top:1px;
- }
+  position:relative;
+  top:1px;
+}
 
 #root {
   height: 100vh;
@@ -86,17 +86,18 @@
   color:#306108;
   font-family:Arial;
   font-size:12px;
-  /*font-weight:bold;*/
+  font-weight:bold;
   padding:6px 10px;
   text-decoration:none;
+  width: 100px;
 }
 .btnGreen:hover {
-   background-color:#5cb811;
- }
+  background-color:#5cb811;
+}
 .btnGreen:active {
-   position:relative;
-   top:1px;
- }
+  position:relative;
+  top:1px;
+}
 
 
 .btnYellow {
@@ -113,13 +114,13 @@
   text-decoration:none;
 }
 .btnYellow:hover {
-   background-color:#ffab23;
- }
+  background-color:#ffab23;
+}
 
 .btnYellow:active {
-   position:relative;
-   top:1px;
- }
+  position:relative;
+  top:1px;
+}
 
 
 .btnRed {
@@ -134,14 +135,17 @@
   font-weight:bold;
   padding:6px 10px;
   text-decoration:none;
+
+  width: 100px;
+
 }
 .btnRed:hover {
-   background-color:#c62d1f;
- }
+  background-color:#c62d1f;
+}
 .btnRed:active {
-   position:relative;
-   top:1px;
- }
+  position:relative;
+  top:1px;
+}
 /* Added spacing */
 .divider{
   width:10px;
@@ -151,38 +155,38 @@
 
 
 .container {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
   height: 100%;
-  /*margin: fill;*/
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 120%;
   text-align: center;
-  /*margin-bottom: 50px;*/
-  /*margin: 10% auto 0;*/
+  margin: inherit;
 }
 
 .StartStyle {
-  width: 70%;
+  width: 60%;
   margin: 20% auto 0;
 }
 
 .LeftStyle {
   display: flex;
   flex-direction: row;
-  height: 90%;
-  justify-content: space-around;
+  height: 85%;
+  width: 118%;
+  /*justify-content: space-around;*/
 }
 
 .LeftSide {
   display: flex;
   flex-direction: column;
   width: 30%;
-  justify-content: normal;
   overflow: auto;
 }
 
 .RightSide {
-  width: 70%;
+  display: flex;
+  width: 85%;
   overflow: auto;
   background-color:#dcecfb;
 }
