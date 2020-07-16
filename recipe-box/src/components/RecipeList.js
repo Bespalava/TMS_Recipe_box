@@ -13,21 +13,25 @@ function RecipeList({items, fetchRecipes, fetchRecipeError}) {
     }, [fetchRecipeError]);
 
     return (
-        <div>
+        <div className='container'>
+
             {
                 items.map(({id, title, description}) => (
-                    <div className="card" key={id}>
+                    <div className="card text-center mt-1" key={id}>
+                        {/*d-md-table-row*/}
+                        {/*<div className="card-header">*/}
+                        {/*    Featured*/}
+                        {/*</div>*/}
+
                         {/*<h5 className="card-header">{title}</h5>*/}
                         <div className="card-body">
                             <h5 className="card-title">{title}</h5>
                             <p className="card-text">{description}</p>
-
-                            {/*<NavLink className="card-link" to={`/recipes`}>*/}
-                            {/*    Cancel*/}
-                            {/*</NavLink>*/}
-                            <a href="/" className="card-link">Edit recipe</a>
-
-                            <a href="/recipes" className="card-link" onClick={remove.bind(this, id)}>Delete recipe</a>
+                            {/*<div className='is-grouped'>*/}
+                            <a href="/" className="btnYellow">Edit recipe</a>
+                            <div className="divider"/>
+                            <a href="/recipes" className="btnRed">Delete recipe</a>
+                            {/*</div>*/}
 
                         </div>
                     </div>

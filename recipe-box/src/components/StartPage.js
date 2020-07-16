@@ -1,8 +1,8 @@
 import React from 'react';
 
-function StartPage(props) {
+function StartPage() {
     return (
-        <div className='start-bl'>
+        <div className='StartStyle'>
             <h3>This is a Recipe App</h3>
             <h4>You can record your recipes here</h4>
             <p>All your recipes are stored in your browser's local storage and any<br/>

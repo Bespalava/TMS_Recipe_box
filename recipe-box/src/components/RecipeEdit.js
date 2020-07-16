@@ -51,8 +51,7 @@ function RecipeEdit(
 
 
     return (
-        //<input style="height:50px"/>
-        <div>
+        <div className='container'>
             <form onSubmit={submit}>
                 {
                     fields.map((field) => (
@@ -69,8 +68,11 @@ function RecipeEdit(
                         </div>
                     ))
                 }
-                <button type="submit" className="btn btn-success">Submit Recipe</button>
-                <button type="cancel" className="btn btn-danger" >Cancel</button>
+
+                <button type="submit" className="btnGreen">Submit</button>
+                    <div className="divider"/>
+                    <button type="cancel" className="btnRed" >Cancel</button>
+
             </form>
         </div>
     );
